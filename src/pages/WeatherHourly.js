@@ -3,7 +3,6 @@ import Search from "../components/search";
 import "./Hourly.css";
 import Forecast from "../components/forecast/forecast";
 import CurrentWeather from "../components/current-weather/current-weather";
-import { WEATHER_API_KEY, WEATHER_API_URL } from "../api";
 
 function WeatherHourly() {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -13,11 +12,11 @@ function WeatherHourly() {
     const [lat, long] = searchData.value.split(" ");
 
     const currentWeatherFetch = fetch(
-      `${WEATHER_API_URL}/weather?lat=${lat}&lon=${long}&appid=${WEATHER_API_KEY}&units=metric`
+      `${process.env.REACT_APP_API_URL}/weather?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
     );
 
     const forecastFetch = fetch(
-      `${WEATHER_API_URL}/forecast?lat=${lat}&lon=${long}&appid=${WEATHER_API_KEY}&units=metric`
+      `${process.env.REACT_APP_API_URL}/forecast?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
     );
 
     Promise.all([currentWeatherFetch, forecastFetch])
