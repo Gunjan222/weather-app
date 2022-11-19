@@ -1,37 +1,19 @@
-import "./App.css";
-import React, { useEffect, useState } from "react";
-import Weather from "./components/weather";
-export default function App() {
-  const [lat, setLat] = useState([]);
-  const [long, setLong] = useState([]);
-  const [data, setData] = useState([]);
+import React from "react";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import WeatherHourly from "./pages/WeatherHourly";
 
-  useEffect(() => {
-    const fetchData = async () => {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        setLat(position.coords.latitude);
-        setLong(position.coords.longitude);
-      });
-
-      await fetch(
-        `${process.env.REACT_APP_API_URL}/weather/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`
-      )
-        .then((res) => res.json())
-        .then((result) => {
-          setData(result);
-          console.log(result);
-        });
-    };
-    fetchData();
-  }, [lat, long]);
-
+function App() {
   return (
-    <div className="App">
-      {typeof data.main != "undefined" ? (
-        <Weather weatherData={data} />
-      ) : (
-        <div></div>
-      )}
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/hour" element={<WeatherHourly />} />
+      </Routes>
+    </Router>
   );
 }
+
+export default App;
