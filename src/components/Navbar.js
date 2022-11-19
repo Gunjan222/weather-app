@@ -5,14 +5,14 @@ const Navbar = () => {
   const path = useLocation();
   return (
     <div className="mid">
-      <div className="left">
+      {/* <div className="left">
         <img
           width={80}
           height={40}
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/ZDF_logo%21_Logo_2021.svg/640px-ZDF_logo%21_Logo_2021.svg.png"
           alt="logo"
         />
-      </div>
+      </div> */}
       <ul className="navbar">
         <li className={path.pathname === "/" ? "item active" : ""}>
           <Link to="/">Home</Link>

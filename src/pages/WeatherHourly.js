@@ -8,7 +8,6 @@ import { WEATHER_API_KEY, WEATHER_API_URL } from "../api";
 function WeatherHourly() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
-  // console.log("first", currentWeather, forecast);
 
   const handleOnSearchChange = (searchData) => {
     const [lat, long] = searchData.value.split(" ");
